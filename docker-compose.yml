@@ -1,4 +1,4 @@
-version: "3"
+version: '3'
 
 services:
   db:
@@ -18,10 +18,11 @@ services:
       - db
     image: wordpress:latest
     ports:
-      - "8000:80"
-      - "443:443"
+      - '8000:80'
     restart: always
-    volumes: ["./:/var/www/html"]
+    volumes:
+      - ./:/var/www/html
+      - ./wp.ini:/usr/local/etc/php/conf.d/uploads.ini
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wordpress
@@ -29,6 +30,6 @@ services:
     networks:
       - wplocal
 networks:
-  wplocal:
+  wplocal: {}
 volumes:
-  db_data:
+  db_data: {}
